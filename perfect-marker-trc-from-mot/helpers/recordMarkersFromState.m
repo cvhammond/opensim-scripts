@@ -7,7 +7,7 @@
 % Return a RowVectorOfVec3 of marker positions for a given state
 function row = recordMarkersFromState(model, state)
 import org.opensim.modeling.*
-row = RowVectorOfVec3(model.getMarkerSet().getSize());
+row = RowVectorVec3(model.getMarkerSet().getSize());
 for i=0:model.getMarkerSet().getSize()-1
     m = model.getMarkerSet().get(i);
     row.set(i,m.getLocationInGround(state));
