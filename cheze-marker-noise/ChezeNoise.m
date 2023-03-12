@@ -1,4 +1,5 @@
-% This function applies the Cheze noise as described in the paper:
+% This function applies the Cheze noise to a .trc marker file as described
+% in the paper:
 %
 % Chèze, L.†, Fregly, B.J., and Dimnet, J. (1998) Determination of joint
 % functional axes from noisy marker data using the finite helical axis.
@@ -8,23 +9,24 @@
 
 function ChezeNoise(markerFileName,outputFileName)
 import org.opensim.modeling.*
-markers = Storage(markerFileName); %import markers
+markers = TimeSeriesTableVec3(markerFileName); %import markers
 fn = makeRandomChezeNoiseFunction();
-time = ArrayDouble();
-markers.getTimeColumn(time);
-output = Storage(markerFileName); %make output storage from input
-
-for i=0:markers.getColumnLabels().size()-2
-    dblArray = ArrayDouble();
-    markers.getDataColumn(0, dblArray);
-    applyChezeFunctionToColumn(fn, time, dblArray);
-    output.setDataColumn(i,dblArray)
+time = markers.getIndependentColumn();
+output = TimeSeriesTableVec3(markerFileName); %make output storage from input
+for i=0:markers.getColumnLabels().size()-1
+    column = output.updDependentColumnAtIndex(i);
+    applyChezeFunctionToColumn(fn, time, column);
 end
-output.print(outputFileName);
+trcFileAdapter = TRCFileAdapter();
+trcFileAdapter.write(output, outputFileName)
 end
 
 function applyChezeFunctionToColumn(fn, time, column)
-for i=0:column.getSize()-1
-    column.set(i, fn(time.get(i), column.get(i)))
+import org.opensim.modeling.*
+for i=0:column.size()-1
+    x = fn(time.get(i), column.get(i).get(0));
+    y = fn(time.get(i), column.get(i).get(1));
+    z = fn(time.get(i), column.get(i).get(2));
+    column.set(i, Vec3(x,y,z))
 end
 end
