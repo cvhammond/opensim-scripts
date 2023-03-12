@@ -1,0 +1,3 @@
+[submodule "numerical-methods-py"]
+	path = numerical-methods-py
+	url = https://github.com/cvhammond/numerical-methods-py
