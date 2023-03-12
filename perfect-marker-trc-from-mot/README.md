@@ -1,2 +1,2 @@
-# opensim-scripts
- A bundle of scripts for OpenSim related computations
+## perfect-marker-trc-from-mot
+This function produces exactly correct marker data from a .mot file in order to be used for testing as a perfect set of marker data without noise. Since noise can affect the confidence of the implementation of new software, testing a computation with perfect data can act as validation if the results are equally high quality as the marker data.

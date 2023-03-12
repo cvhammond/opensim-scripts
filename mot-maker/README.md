@@ -1,2 +1,2 @@
-# opensim-scripts
- A bundle of scripts for OpenSim related computations
+## mot-maker
+This function creates a .mot file from instructions given by the user. If a simple motion is needed to test a concept on a moving model, then this function can be used to provide a start and end value and time for a given coordinate and a .mot file with that motion is produced. Great for testing.

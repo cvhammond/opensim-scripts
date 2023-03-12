@@ -1,2 +1,2 @@
-# opensim-scripts
- A bundle of scripts for OpenSim related computations
+## mot-from-trc
+This function simply completes an Inverse Kinematics computation to produce a .mot file for use in other OpenSim computations. This function could be used as part of a larger script because GUI-based inverse kinematics is tedious and/or non-automated. This is also an alternative to the InverseKinematicsTool provided by OpenSim that takes significantly longer but provides more additional data about the task.
