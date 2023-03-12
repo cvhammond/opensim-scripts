@@ -4,10 +4,10 @@
 % Chèze, L.†, Fregly, B.J., and Dimnet, J. (1998) Determination of joint
 % functional axes from noisy marker data using the finite helical axis.
 % Human Movement Science 17, 1-15.
-
+%
 % (string, string) -> (None)
 
-function ChezeNoise(markerFileName,outputFileName)
+function ChezeNoise(markerFileName, outputFileName)
 import org.opensim.modeling.*
 markers = TimeSeriesTableVec3(markerFileName); %import markers
 fn = makeRandomChezeNoiseFunction();
